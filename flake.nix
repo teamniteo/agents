@@ -61,15 +61,17 @@
           "Read(nix flake show *)"
           "WebFetch"
           "WebSearch"
-          "mcp__cloudflare-docs__*"
-          "mcp__customerio__*"
-          "mcp__heroku__*"
-          "mcp__mcp-grafana__*"
-          "mcp__mcp-nixos__*"
-          "mcp__sentry__*"
-          "mcp__imagesorcery-mcp__*"
-          "mcp__prometheus__*"
-          "mcp__help-scout__*"
+          # home-manager serves these servers as its own plugin, so Claude Code
+          # names their tools mcp__plugin_claude-code-home-manager_<server>__*
+          "mcp__plugin_claude-code-home-manager_cloudflare-docs__*"
+          "mcp__plugin_claude-code-home-manager_customerio__*"
+          "mcp__plugin_claude-code-home-manager_help-scout__*"
+          "mcp__plugin_claude-code-home-manager_heroku__*"
+          "mcp__plugin_claude-code-home-manager_imagesorcery-mcp__*"
+          "mcp__plugin_claude-code-home-manager_mcp-grafana__*"
+          "mcp__plugin_claude-code-home-manager_mcp-nixos__*"
+          "mcp__plugin_claude-code-home-manager_prometheus__*"
+          "mcp__plugin_claude-code-home-manager_sentry__*"
         ];
 
         mcpPackages =
