@@ -1,10 +1,10 @@
-<!-- Managed in https://github.com/teamniteo/agents — edit there, not here.
-     If you have project-specific instructions to add, README.md is the best place. -->
-
 ---
 paths:
   - "backend/**/*"
 ---
+
+<!-- Managed in https://github.com/teamniteo/agents — edit there, not here.
+     If you have project-specific instructions to add, README.md is the best place. -->
 
 # Backend
 

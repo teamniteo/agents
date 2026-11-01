@@ -1,5 +1,5 @@
 {
-  description = "Shared Claude Code configuration for Niteo";
+  description = "Shared coding agent configuration for Niteo";
 
   inputs = {
     mcp-nixos.url = "github:utensils/mcp-nixos";
@@ -32,13 +32,6 @@
               value = ./skills + "/${name}";
             }) skillDirs
           );
-
-        # You have to have the official plugins marketplace installed and updated
-        enabledPlugins = {
-          "claude-md-management@claude-plugins-official" = true;
-          "code-review@claude-plugins-official" = true;
-          "sentry@claude-plugins-official" = true;
-        };
 
         # Allow ~safe read-only operations by default
         permissions.allow = [
@@ -73,7 +66,7 @@
           "mcp__heroku__*"
           "mcp__mcp-grafana__*"
           "mcp__mcp-nixos__*"
-          "mcp__plugin_sentry_sentry__*"
+          "mcp__sentry__*"
           "mcp__imagesorcery-mcp__*"
           "mcp__prometheus__*"
           "mcp__help-scout__*"
@@ -145,6 +138,12 @@
             url = "https://mcp-eu.customer.io/mcp";
           };
 
+          # Browser-based OAuth: log in from `/mcp` (Claude Code) or `codex mcp login sentry`
+          sentry = {
+            type = "http";
+            url = "https://mcp.sentry.dev/mcp";
+          };
+
           imagesorcery-mcp = {
             command = "${(self.lib.mcpPackages pkgs).imagesorcery-mcp}/bin/imagesorcery-mcp";
           };
@@ -156,6 +155,67 @@
             command = "${(self.lib.mcpPackages pkgs).help-scout-mcp-server}/bin/help-scout-mcp-server";
           };
         };
+
+        # Codex reads the same servers from config.toml, but with different keys and -
+        # crucially - no `${VAR}` expansion anywhere. Translate mechanically:
+        #   * `type` is dropped; codex infers stdio vs http from `command` / `url`
+        #   * `headers` becomes `http_headers`
+        #   * an env value that is a bare `${VAR}` becomes `env_vars`, codex's
+        #     whitelist for forwarding a shell variable
+        toCodexMcp =
+          pkgs:
+          let
+            inherit (pkgs) lib;
+
+            placeholderVar =
+              v:
+              let
+                m = if builtins.isString v then builtins.match "[$][{]([A-Za-z_][A-Za-z_0-9]*)[}]" v else null;
+              in
+              if m == null then null else builtins.head m;
+
+            convert =
+              server:
+              let
+                env = server.env or { };
+                forwarded = lib.filterAttrs (_: v: placeholderVar v != null) env;
+                literal = builtins.removeAttrs env (builtins.attrNames forwarded);
+              in
+              builtins.removeAttrs server [
+                "type"
+                "env"
+                "headers"
+              ]
+              // lib.optionalAttrs (literal != { }) { env = literal; }
+              // lib.optionalAttrs (forwarded != { }) {
+                env_vars = lib.mapAttrsToList (_: placeholderVar) forwarded;
+              }
+              // lib.optionalAttrs (server ? headers) { http_headers = server.headers; };
+          in
+          lib.mapAttrs (_: convert);
+
+        # The team's servers for codex. `Basic ${PROMETHEUS_AUTH}` cannot survive the
+        # translation: codex never expands headers, and `bearer_token_env_var`
+        # hardcodes a `Bearer` scheme. `http_headers_helper` runs a command that
+        # prints the headers as JSON instead. It sources `secretsFile`, the shell
+        # file that sets PROMETHEUS_AUTH, rather than trusting the helper to
+        # inherit the shell environment: codex scrubs some vars from children.
+        codexMcpServers =
+          pkgs:
+          { secretsFile }:
+          let
+            translated = self.lib.toCodexMcp pkgs (self.lib.mcpServers pkgs);
+            prometheusAuthHelper = pkgs.writeShellScript "codex-prometheus-auth" ''
+              . "${secretsFile}"
+              printf '{"Authorization":"Basic %s"}' "$PROMETHEUS_AUTH"
+            '';
+          in
+          translated
+          // {
+            prometheus = builtins.removeAttrs translated.prometheus [ "http_headers" ] // {
+              http_headers_helper = toString prometheusAuthHelper;
+            };
+          };
 
       };
     };

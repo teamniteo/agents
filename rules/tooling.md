@@ -3,16 +3,6 @@
 
 # Tooling
 
-## Plugins
-
-Use the following plugins when working on user's tasks:
-
-- claude-md-management
-- code-review
-- sentry
-
-If any of these Plugins is not available, ask the user to install and update the official plugins marketplace.
-
 ## GitHub
 
 Use the `gh` CLI for all GitHub operations — reading PRs and issues, fetching diffs, reading file contents from remote repos, and posting comments. It is already authenticated. Prefer `gh` (and `gh api` for anything not covered by a subcommand) over hitting the GitHub REST API by hand.
@@ -28,7 +18,7 @@ Use the `gh` CLI for all GitHub operations — reading PRs and issues, fetching 
 - **Prometheus**:
     1. Requires `PROMETHEUS_AUTH` environment variable. Get the password from 1Password then run `export PROMETHEUS_AUTH="$(echo -n 'grafana:<PASSWORD>' | base64)"`.
     2. Requires Niteo VPN connection. If the Prometheus MCP fails to connect, ask the user to connect to the Niteo VPN.
-- **Sentry**: Browser-based OAuth. Available via the `sentry` plugin. Use for error monitoring, issue analysis, and root cause investigation.
+- **Sentry**: Browser-based OAuth. Use for error monitoring, issue analysis, and root cause investigation.
 
 ## Image Manipulation
 
