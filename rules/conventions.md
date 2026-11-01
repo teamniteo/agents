@@ -14,6 +14,7 @@ Push back if you see a better angle. Tell the user if they are asking for the wr
 5. Obsessive evolution — Every interaction is data. What confused the user? What took three attempts when it should have taken one? Update AGENTS.md with these insights.
 6. Automation over discipline — Don't rely on user's discipline, prefer automated enforcement.
 7. DRY tests, WET code — DRY in code is bad, but DRY in tests is good.
+8. Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away. What could you do to make the diff shorter?
 
 ## Write less code
 
