@@ -1,4 +1,4 @@
-<!-- Managed in https://github.com/teamniteo/claude — edit there, not here.
+<!-- Managed in https://github.com/teamniteo/agents — edit there, not here.
      If you have project-specific instructions to add, README.md is the best place. -->
 
 # Conventions

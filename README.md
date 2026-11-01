@@ -15,17 +15,17 @@ Projects pin this repo as a flake input and symlink `rules/` and `skills/` into 
 1. Add this repo as a flake input (`nix/flake.nix`):
 
    ```nix
-   inputs.niteo-claude.url = "github:teamniteo/claude";
+   inputs.niteo-agents.url = "github:teamniteo/agents";
    ```
 
 2. Fetch it as a source (`nix/default.nix`):
 
    ```nix
-   niteoClaudeNode = flakeLock.nodes.${flakeLock.nodes.root.inputs.niteo-claude};
+   niteoAgentsNode = flakeLock.nodes.${flakeLock.nodes.root.inputs.niteo-agents};
 
-   flakeSources.niteo-claude = builtins.fetchTarball {
-     url = "https://github.com/teamniteo/claude/archive/${niteoClaudeNode.locked.rev}.tar.gz";
-     sha256 = niteoClaudeNode.locked.narHash;
+   flakeSources.niteo-agents = builtins.fetchTarball {
+     url = "https://github.com/teamniteo/agents/archive/${niteoAgentsNode.locked.rev}.tar.gz";
+     sha256 = niteoAgentsNode.locked.narHash;
    };
    ```
 
@@ -34,8 +34,8 @@ Projects pin this repo as a flake input and symlink `rules/` and `skills/` into 
    ```nix
    shellHook = ''
      mkdir -p "$PROJECT_ROOT/.claude"
-     ln -sfn ${pkgs.flakeSources.niteo-claude}/rules  "$PROJECT_ROOT/.claude/rules"
-     ln -sfn ${pkgs.flakeSources.niteo-claude}/skills "$PROJECT_ROOT/.claude/skills"
+     ln -sfn ${pkgs.flakeSources.niteo-agents}/rules  "$PROJECT_ROOT/.claude/rules"
+     ln -sfn ${pkgs.flakeSources.niteo-agents}/skills "$PROJECT_ROOT/.claude/skills"
    '';
    ```
 
@@ -46,7 +46,7 @@ Projects pin this repo as a flake input and symlink `rules/` and `skills/` into 
    @.claude/rules/conventions.md when working in this repo.
    ```
 
-Bump the shared config project-wide with `nix flake update niteo-claude`.
+Bump the shared config project-wide with `nix flake update niteo-agents`.
 
 ## Niteans
 
