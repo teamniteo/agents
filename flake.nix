@@ -33,47 +33,6 @@
             }) skillDirs
           );
 
-        # Allow ~safe read-only operations by default
-        permissions.allow = [
-          "Bash(gh auth token*)"
-          "Bash(gh issue list*)"
-          "Bash(gh issue view*)"
-          "Bash(gh pr diff*)"
-          "Bash(gh pr list*)"
-          "Bash(gh pr view*)"
-          "Bash(gh search*)"
-          "Bash(git branch*)"
-          "Bash(git diff*)"
-          "Bash(git log*)"
-          "Bash(git remote*)"
-          "Bash(git show*)"
-          "Bash(git status*)"
-          "Bash(git tag*)"
-          "Bash(nix eval *)"
-          "Bash(nix flake metadata*)"
-          "Bash(nix flake show*)"
-          "Bash(nix path-info *)"
-          "Bash(nix search *)"
-          "Bash(wc *)"
-          "Bash(which *)"
-          "Read(/nix/store/*)"
-          "Read(nix eval *)"
-          "Read(nix flake show *)"
-          "WebFetch"
-          "WebSearch"
-          # home-manager serves these servers as its own plugin, so Claude Code
-          # names their tools mcp__plugin_claude-code-home-manager_<server>__*
-          "mcp__plugin_claude-code-home-manager_cloudflare-docs__*"
-          "mcp__plugin_claude-code-home-manager_customerio__*"
-          "mcp__plugin_claude-code-home-manager_help-scout__*"
-          "mcp__plugin_claude-code-home-manager_heroku__*"
-          "mcp__plugin_claude-code-home-manager_imagesorcery-mcp__*"
-          "mcp__plugin_claude-code-home-manager_mcp-grafana__*"
-          "mcp__plugin_claude-code-home-manager_mcp-nixos__*"
-          "mcp__plugin_claude-code-home-manager_prometheus__*"
-          "mcp__plugin_claude-code-home-manager_sentry__*"
-        ];
-
         mcpPackages =
           pkgs:
           let

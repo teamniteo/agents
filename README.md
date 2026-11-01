@@ -1,6 +1,6 @@
 # Niteo agents
 
-Coding agent configuration shared across all Niteo projects and all Niteans: rules, skills, MCP servers and permissions. Claude Code and Codex both use it.
+Coding agent configuration shared across all Niteo projects and all Niteans: rules, skills and MCP servers. Claude Code and Codex both use it.
 
 ## Projects
 
@@ -63,7 +63,7 @@ Edit the rule, never the skill: the skill holds no content of its own.
 
 ## Niteans
 
-Niteans use skills, MCPs, permissions and the shared rules from this repo in their home-manager setup of Claude Code and Codex, so that both gain Niteo-specific capabilities.
+Niteans use skills, MCPs and the shared rules from this repo in their home-manager setup of Claude Code and Codex, so that both gain Niteo-specific capabilities.
 
 Claude Code takes `lib.mcpServers` as is. Codex reads the same servers with different keys and no `${VAR}` expansion, so take them from `lib.codexMcpServers pkgs { secretsFile = ...; }`, where `secretsFile` is the shell file that sets `PROMETHEUS_AUTH`. `lib.toCodexMcp pkgs` translates personal servers the same way.
 
