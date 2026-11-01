@@ -67,6 +67,8 @@ Niteans use skills, MCPs, permissions and the shared rules from this repo in the
 
 Claude Code takes `lib.mcpServers` as is. Codex reads the same servers with different keys and no `${VAR}` expansion, so take them from `lib.codexMcpServers pkgs { secretsFile = ...; }`, where `secretsFile` is the shell file that sets `PROMETHEUS_AUTH`. `lib.toCodexMcp pkgs` translates personal servers the same way.
 
+Codex reads a project's `AGENTS.md`, and so the project's instructions, only once the project is trusted, and it matches trust by exact path: the checkout itself or its git root, never a parent folder like `~/work`. List every checkout you use under `projects` in your Codex settings, each with `trust_level = "trusted"`. A home-manager `config.toml` is read-only, so Codex cannot save the trust you give it when it asks.
+
 Niteans are free to expand with their personal tooling or preferences, and are encouraged to generalize and contribute back to this repo for other Niteans to benefit.
 
 
