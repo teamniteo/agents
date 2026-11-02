@@ -74,6 +74,8 @@ The prefix can be one of the following:
 
 If the branch contains a `chore` and a `fix` commit, use `fix` as the prefix. If the branch contains a `chore` and a `feat` commit, use `feat` as the prefix. If the branch contains a `fix` and a `feat` commit, use `feat` as the prefix.
 
+Naming applies when you create a branch. NEVER rename a branch once it is pushed, even if its name breaks this convention: GitHub closes the open PR from a renamed branch, and the PR can't be reopened. The branch is deleted after merging, so its name doesn't matter. The commit messages stay in history, so fix those instead.
+
 When working in a feature branch, always try to merge new work into the previous commits on this branch. 
 
 ### Commit message convention
