@@ -69,8 +69,8 @@ Before any work, always ask the user what GitHub Issue they are working on. Then
 Each branch name should start with a type prefix, followed by a slash, and then a concise description of the work being done. Use hyphens to separate words in the description.
 
 The prefix can be one of the following:
-- `feat`: for new features or enhancements
-- `fix`: for bug fixes
+- `feat`: for user-facing new features
+- `fix`: for user-facing bug fixes or enhancements
 - `chore`: other
 
 If the branch contains a `chore` and a `fix` commit, use `fix` as the prefix. If the branch contains a `chore` and a `feat` commit, use `feat` as the prefix. If the branch contains a `fix` and a `feat` commit, use `feat` as the prefix.
