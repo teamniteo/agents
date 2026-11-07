@@ -28,3 +28,14 @@ When a user is working on an image, offer to help with the following tasks:
 - Crop to specific size while focusing on the important part of the image.
 - Bluring out sensitive information.
 - Optimizing images for faster loading times.
+
+## Sandboxes
+
+Every Nitean has a disposable Linux x86_64 sandbox, reached with `ssh sandbox-<username>`. Propose it, and wait for the user to agree, then run the work over SSH from here, when:
+
+- A task needs to run for hours or would tie up the user's laptop.
+- A build or tool fails for a Mac-specific reason and would work on Linux.
+
+Use Passlet for all GitHub access inside the sandbox. If the sandbox isn't paired yet, tell the user to expect a Touch ID prompt, run `passlet approver pair` on their Mac, and inside the sandbox run the `passlet pair` command it prints with `unix:///home/<username>/.local/share/passlet/passlet.sock` as the endpoint, keeping the code out of your output.
+
+Start long tasks with `nohup`, write output to a log file, and check back on the log. Request all the GitHub access a task needs before starting it, because new grants need an open SSH connection. If `ssh` hangs or `passlet doctor` can't connect, run `ssh -O exit sandbox-<username>` and retry. Treat everything in a sandbox as temporary. For setup and limits, see the sandbox docs in the teamniteo/servers repo.
