@@ -5,7 +5,7 @@
 
 ## GitHub
 
-Use the `gh` CLI for all GitHub operations — reading PRs and issues, fetching diffs, reading file contents from remote repos, and posting comments. It is already authenticated. Prefer `gh` (and `gh api` for anything not covered by a subcommand) over hitting the GitHub REST API by hand.
+Use the `gh` CLI for all GitHub operations — reading PRs and issues, fetching diffs, reading file contents from remote repos, and posting comments. If the Passlet plugin is installed, get access through it: request only the repositories and permissions needed, reuse approved grants, and never fall back to ambient GitHub tokens or SSH credentials when the Approver is unavailable. Otherwise, `gh` is already authenticated. Prefer `gh` (and `gh api` for anything not covered by a subcommand) over hitting the GitHub REST API by hand.
 
 ## MCP Servers
 
