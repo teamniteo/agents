@@ -79,6 +79,8 @@ Naming applies when you create a branch. NEVER rename a branch once it is pushed
 
 When working in a feature branch, always try to merge new work into the previous commits on this branch. 
 
+Leave merged and closed branches alone, local and remote. Never delete them, never list them as leftovers to clean up, and never ask whether to delete them. Nobody minds a stale branch, and the PR keeps its history either way.
+
 ### Commit message convention
 
 Each commit message should start with a type prefix, followed by a colon, a space, and an uppercase letter.
