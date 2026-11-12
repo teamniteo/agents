@@ -58,6 +58,8 @@ Use semicolons sparingly in prose, preferring commas where grammatically appropr
 
 Never hard-wrap prose in Markdown files. Write each paragraph as a single line and let the editor soft-wrap. Hard wraps make diffs noisy — a one-word edit reflows the whole paragraph.
 
+Whenever you mention a PR or an issue in a reply, give its full GitHub URL so it is a clickable link. A bare `#1151` or "trak PR 1151" makes the reader go and find it.
+
 ## git
 
 NEVER push directly to `main`. Always work on a feature branch and create a draft Pull Request. This rule has NO exceptions — not even for "quick fixes" or single commits.
