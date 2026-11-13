@@ -33,6 +33,29 @@
             }) skillDirs
           );
 
+        # Claude Code hooks, for the `hooks` key of Claude Code settings.
+        # SessionEnd stops processes a session left running (dev servers,
+        # databases, headless Chrome). See hooks/session-cleanup.sh.
+        claudeHooks =
+          pkgs:
+          let
+            sessionCleanup = pkgs.writeShellScript "claude-session-cleanup" ''
+              JQ=${pkgs.jq}/bin/jq exec /bin/bash ${./hooks/session-cleanup.sh} "$@"
+            '';
+          in
+          {
+            SessionEnd = [
+              {
+                hooks = [
+                  {
+                    type = "command";
+                    command = "${sessionCleanup}";
+                  }
+                ];
+              }
+            ];
+          };
+
         mcpPackages =
           pkgs:
           let
