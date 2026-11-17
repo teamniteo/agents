@@ -61,6 +61,8 @@ Claude Code loads a rule by itself, always or when a file matching its `paths:` 
 
 Edit the rule, never the skill: the skill holds no content of its own.
 
+Use `/dangling` to check whether closing the current session risks losing or interrupting work. It skips future follow-up, temporary checkouts, PR body files, retained Passlet grants, and local or remote branches.
+
 ## Niteans
 
 Niteans use skills, MCPs and the shared rules from this repo in their home-manager setup of Claude Code and Codex, so that both gain Niteo-specific capabilities.
