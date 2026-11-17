@@ -144,6 +144,8 @@ No implementation plans, lists of files to change, or test and docs follow-ups: 
 
 ### Pull Requests
 
+When the user asks for status or an overview, recheck each PR's current state on GitHub before reporting it, including draft status, CI, reviews, and merge status. Never rely on memory or earlier checks.
+
 PR body = commit message body. Nothing else. No ## Summary, no ## Test plan, no rephrasing. Never include the commit title in the PR body. Use `git log -1 --format=%b`, not `%B`, to extract only the body. For a single-commit PR, copy the commit body verbatim. For a multi-commit PR, copy the main commit's body verbatim and append an `Also:` block listing the other commit titles, like so:
   
 ```
