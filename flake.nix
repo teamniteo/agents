@@ -135,8 +135,14 @@
           # Requires HELPSCOUT_APP_ID and HELPSCOUT_APP_SECRET in environment
           # Get credentials from Help Scout → Your Profile → My Apps -> Create App
           # Name it "Claude MCP", the URL can be anything (e.g. https://niteo.co)
+          # Writes are tier 1 only: status, notes, tags, assignment, drafts.
+          # HELPSCOUT_ENABLE_CUSTOMER_VISIBLE_WRITES stays unset, so nothing
+          # this server does can email a customer.
           help-scout = {
             command = "${(self.lib.mcpPackages pkgs).help-scout-mcp-server}/bin/help-scout-mcp-server";
+            env = {
+              HELPSCOUT_ENABLE_WRITES = "true";
+            };
           };
         };
 
