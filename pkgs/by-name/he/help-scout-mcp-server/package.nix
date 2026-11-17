@@ -6,16 +6,16 @@
 
 buildNpmPackage rec {
   pname = "help-scout-mcp-server";
-  version = "1.7.0";
+  version = "2.1.0";
 
   src = fetchFromGitHub {
     owner = "drewburchfield";
     repo = "help-scout-mcp-server";
     rev = "v${version}";
-    hash = "sha256-DBOUfnbFKuxDIKH84UlwKrF23FwzNumZ2gBMJtnRRmk=";
+    hash = "sha256-GR7i3s3u2dqMft2HrZExSN5+lOY/cgq1puJlJ0lOWf8=";
   };
 
-  npmDepsHash = "sha256-au6r74mUvXo61Mb9etCZnbfeIuM/kWDLS5G6XiMuuyg=";
+  npmDepsHash = "sha256-ibUlE7jwrYd/sD54wd/pqFjyIyjY85WWAH/P29BoTH0=";
 
   meta = {
     description = "Help Scout MCP server";
