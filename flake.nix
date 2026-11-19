@@ -85,15 +85,6 @@
             url = "https://docs.mcp.cloudflare.com/mcp";
           };
 
-          # Login with `heroku login`
-          heroku = {
-            command = "${pkgs.heroku}/bin/heroku";
-            args = [ "mcp:start" ];
-            env = {
-              PATH = "${pkgs.nodejs}/bin:${pkgs.heroku}/bin";
-            };
-          };
-
           # Token is created on https://niteo.grafana.net/org/serviceaccounts
           # and is saved in 1Password
           mcp-grafana = {

@@ -11,7 +11,6 @@ Use the `gh` CLI for all GitHub operations — reading PRs and issues, fetching 
 
 - **Cloudflare Docs**: Provides up-to-date Cloudflare documentation.
 - **Grafana**: Requires `GRAFANA_SERVICE_ACCOUNT_TOKEN` environment variable from 1Password.
-- **Heroku**: Uses existing Heroku CLI authentication. If unauthenticated, ask the user to run `heroku login`. Get the project's Heroku app name from README.md.
 - **ImageSorcery**: Local image manipulation (crop, blur, optimize).
 - **Customer.io**: Browser-based OAuth. Use for email campaigns, segments, templates, and workspace data.
 - **NixOS (mcp-nixos)**: Query NixOS packages, options, Home Manager, Darwin, and flake information.
