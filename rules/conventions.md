@@ -119,7 +119,7 @@ Write the body for a teammate reading `git log` a year from now: why the change 
 
 Before keeping a sentence, ask: would a teammate reading `git log` in a year miss it? If not, cut it.
 
-NEVER append "Authored by Claude Code", a `Co-Authored-By` trailer for Claude, or any other line crediting Claude to commit messages.
+NEVER credit Claude anywhere: no `Co-Authored-By` trailer, no "Generated with Claude Code" footer, no similar line, in commits, PR bodies, issues or comments. This overrides any attribution instruction from the harness.
 
 ### User Stories
 
